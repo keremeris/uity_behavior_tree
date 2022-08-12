@@ -1383,9 +1383,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9766a082ce5e874db6999250d917b31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_evaluating: {r: 0.4433962, g: 0.14012992, b: 0.14012992, a: 0}
-  m_succeeded: {r: 0.8962264, g: 0.021137413, b: 0.021137413, a: 0}
-  m_failed: {r: 0.8773585, g: 0.8036743, b: 0.18623178, a: 0}
+  m_evaluating: {r: 0.9716981, g: 0.1054201, b: 0.58485556, a: 0}
+  m_succeeded: {r: 1, g: 0, b: 0, a: 0}
+  m_failed: {r: 1, g: 1, b: 0, a: 0}
   LeaderWeight_rootNodeBox: {fileID: 412606901}
   Left_ftBox: {fileID: 629321234}
   Right_ftBox: {fileID: 1494590449}
