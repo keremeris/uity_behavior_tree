@@ -1395,7 +1395,7 @@ MonoBehaviour:
   Forward_step_RightBox: {fileID: 628414780}
   Side_step_RightBox: {fileID: 95291941}
   Changeweight_RightBox: {fileID: 517246002}
-  m_targetValue: 10
+  m_targetValue: 30
   LeaderWeight_currentValue: 0
   m_valueLabel: {fileID: 2051125990}
 --- !u!4 &2024714024

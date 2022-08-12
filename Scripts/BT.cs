@@ -83,8 +83,8 @@ public class BT : MonoBehaviour
         dance5_sl = new ActionNode(NotEqualToTarget);
         dance6_sl= new ActionNode(NotEqualToTarget);
         dance7_cwl = new ActionNode(NotEqualToTarget);
-        dance8_fr= new ActionNode(NotEqualToTarget);
-        dance9_fr= new ActionNode(NotEqualToTarget);
+        dance8_fr= new ActionNode(AddFive);
+        dance9_fr= new ActionNode(AddFive);
         dance10_fr = new ActionNode(NotEqualToTarget);
         dance11_sr = new ActionNode(NotEqualToTarget);
         dance12_sr = new ActionNode(NotEqualToTarget);
@@ -149,11 +149,17 @@ public class BT : MonoBehaviour
         }else if (LeaderWeight_rootNode.nodeState == NodeStates.FAILURE) {
             SetFailed(LeaderWeight_rootNodeBox);
         }
+        else if (LeaderWeight_rootNode.nodeState == NodeStates.RUNNING) {
+            SetRUNNING(LeaderWeight_rootNodeBox);
+        }
         //update for LF node box
         if(Left_ft.nodeState == NodeStates.SUCCESS){
             SetSucceeded(Left_ftBox);      
         }else if(Left_ft.nodeState == NodeStates.FAILURE){
             SetFailed(Left_ftBox);
+        }
+        else if(Left_ft.nodeState == NodeStates.RUNNING){
+            SetRUNNING(Left_ftBox);
         }
         //update for RF node box
         if(Right_ft.nodeState == NodeStates.SUCCESS){
@@ -161,17 +167,26 @@ public class BT : MonoBehaviour
         }else if(Right_ft.nodeState == NodeStates.FAILURE){
             SetFailed(Right_ftBox);
         }
+        else if(Right_ft.nodeState == NodeStates.RUNNING){
+            SetRUNNING(Right_ftBox);
+        }
         //update for Forward_step_Left
         if(Forward_step_Left.nodeState == NodeStates.SUCCESS){
             SetSucceeded(Forward_step_LeftBox);      
         }else if(Forward_step_Left.nodeState == NodeStates.FAILURE){
             SetFailed(Forward_step_LeftBox);
         }
+        else if(Forward_step_Left.nodeState == NodeStates.RUNNING){
+            SetRUNNING(Forward_step_LeftBox);
+        }
         //update for Side_step_Left
         if(Side_step_Left.nodeState == NodeStates.SUCCESS){
             SetSucceeded(Side_step_LeftBox);      
         }else if(Side_step_Left.nodeState == NodeStates.FAILURE){
             SetFailed(Side_step_LeftBox);
+        }
+        else if(Side_step_Left.nodeState == NodeStates.RUNNING){
+            SetRUNNING(Side_step_LeftBox);
         }
         //update for Changeweight_Left box
 
@@ -180,11 +195,17 @@ public class BT : MonoBehaviour
         }else if(Changeweight_Left.nodeState == NodeStates.FAILURE){
             SetFailed(Changeweight_LeftBox);
         }
+        else if(Changeweight_Left.nodeState == NodeStates.RUNNING){
+            SetRUNNING(Changeweight_LeftBox);
+        }
          //update for Forward_step_Right
         if(Forward_step_Right.nodeState == NodeStates.SUCCESS){
             SetSucceeded(Forward_step_RightBox);      
         }else if(Forward_step_Right.nodeState == NodeStates.FAILURE){
             SetFailed(Forward_step_RightBox);
+        }
+        else if(Forward_step_Right.nodeState == NodeStates.RUNNING){
+            SetRUNNING(Forward_step_RightBox);
         }
         //update for Side_step_Right
         if(Side_step_Right.nodeState == NodeStates.SUCCESS){
@@ -192,11 +213,17 @@ public class BT : MonoBehaviour
         }else if(Side_step_Right.nodeState == NodeStates.FAILURE){
             SetFailed(Side_step_RightBox);
         }
+        else if(Side_step_Right.nodeState == NodeStates.RUNNING){
+            SetRUNNING(Side_step_RightBox);
+        }
         //update for Changeweight_Right box
         if(Changeweight_Right.nodeState == NodeStates.SUCCESS){
             SetSucceeded(Changeweight_RightBox);      
         }else if(Changeweight_Right.nodeState == NodeStates.FAILURE){
             SetFailed(Changeweight_RightBox);
+        }
+        else if(Changeweight_Right.nodeState == NodeStates.RUNNING){
+            SetRUNNING(Changeweight_RightBox);
         }
 
     }
@@ -205,21 +232,29 @@ public class BT : MonoBehaviour
            // obj.Color = Color.GREEN;
         Debug.Log(obj);
         Debug.Log("Green");
-        obj.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
-        return Color.green;
+        obj.GetComponent<Renderer>().material.SetColor("_Color", m_succeeded);
+        return m_succeeded;
        // }
     }
+    
     private Color SetFailed(GameObject obj){
         //if(node.nodeState == NodeStates.FAILURE ){
         Debug.Log(obj);
         Debug.Log("RED");
           
-        obj.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
-        return Color.red;
+        obj.GetComponent<Renderer>().material.SetColor("_Color", m_failed);
+        return m_failed;
             
        // }         
-    }
-         
+    }  
+    private Color SetRUNNING(GameObject obj){
+        //if(node.nodeState == NodeStates.FAILURE ){
+        
+        obj.GetComponent<Renderer>().material.SetColor("_Color", m_evaluating);
+        return m_evaluating;
+            
+       // }         
+    }        
      private NodeStates NotEqualToTarget(){
         if(m_currentValue != m_targetValue){
             return NodeStates.SUCCESS;
